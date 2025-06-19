@@ -95,7 +95,104 @@ class Calculator {
     }
 
     setOperation(operator) {
-        if (this.operation && this.shouldResetScreen) {
-            this.operation = operator;
-            return;
+        if (this.operation !== undefined) {
+            this.evaluate();
         }
+        this.operation = operator;
+        this.previousOperand = this.currentOperand;
+        this.shouldResetScreen = true;
+        this.updateDisplay();
+    }
+
+    toggleSign() {
+        this.currentOperand = (parseFloat(this.currentOperand) * -1).toString();
+        this.updateDisplay();
+    }
+
+    evaluate() {
+        let computation;
+        const prev = parseFloat(this.previousOperand);
+        const current = parseFloat(this.currentOperand);
+        
+        if (isNaN(prev) || isNaN(current)) return;
+
+        switch (this.operation) {
+            case '+':
+                computation = prev + current;
+                break;
+            case '-':
+                computation = prev - current;
+                break;
+            case '×':
+                computation = prev * current;
+                break;
+            case '÷':
+                if (current === 0) {
+                    this.result.textContent = 'Error';
+                    return;
+                }
+                computation = prev / current;
+                break;
+            case '%':
+                computation = (prev / 100) * current;
+                break;
+            default:
+                return;
+        }
+
+        this.history.textContent = `${this.formatNumber(prev)} ${this.operation} ${this.formatNumber(current)} =`;
+        this.currentOperand = computation.toString();
+        this.operation = undefined;
+        this.previousOperand = '';
+        this.shouldResetScreen = true;
+        this.updateDisplay();
+    }
+
+    clear() {
+        this.currentOperand = '0';
+        this.previousOperand = '';
+        this.operation = undefined;
+        this.history.textContent = '';
+        this.updateDisplay();
+    }
+
+    delete() {
+        if (this.currentOperand.length === 1) {
+            this.currentOperand = '0';
+        } else {
+            this.currentOperand = this.currentOperand.slice(0, -1);
+        }
+        this.updateDisplay();
+    }
+
+    formatNumber(number) {
+        const stringNumber = number.toString();
+        const integerDigits = parseFloat(stringNumber.split('.')[0]);
+        const decimalDigits = stringNumber.split('.')[1];
+
+        let integerDisplay;
+        if (isNaN(integerDigits)) {
+            integerDisplay = '0';
+        } else {
+            integerDisplay = integerDigits.toLocaleString('en', {
+                maximumFractionDigits: 0
+            });
+        }
+
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`;
+        } else {
+            return integerDisplay;
+        }
+    }
+
+    updateDisplay() {
+        this.result.textContent = this.formatNumber(this.currentOperand);
+        if (this.operation != null) {
+            this.history.textContent = `${this.formatNumber(this.previousOperand)} ${this.operation}`;
+        }
+    }
+}
+
+// Initialize calculator
+new Calculator();

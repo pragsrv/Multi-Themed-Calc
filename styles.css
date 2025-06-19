@@ -1,6 +1,6 @@
 /* Base Styles */
 * {
-    margin: 0;a
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -152,7 +152,7 @@ html[data-theme="cyber"] {
     100% { transform: translateY(0px); }
 }
 /* Theme-specific Animations */
-html[data-etheme="rerrrot"] .key {
+html[data-theme="retro"] .key {
     transform: none;
     box-shadow: 3px 3px 0 var(--key-border);
 }
@@ -196,13 +196,4 @@ html[data-theme="retro"] .calculator {
 
 html[data-theme="cyber"] .calculator {
     /* Removed animation property to prevent conflict */
-}/* Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
-
-body {
-    min-height: 100vh;
-    diisplay: flex;splay: flex;
