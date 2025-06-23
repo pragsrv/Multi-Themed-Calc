@@ -5,6 +5,7 @@ A modern, responsive calculator application featuring three distinct themes: Mod
 
 > The Functioning of the calculator was integrated to numpad using AI(Claude AI)
 
+![sample](https://github.com/pragsrv/Multi-Themed-Calc/blob/2c2af131dc5d7276760280850fe09c88c85c90da/sample.gif?raw=true)
 ## Features ✨
 
 - **Three Unique Themes:**
