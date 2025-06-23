@@ -1,7 +1,9 @@
 # Multi-Themed-Calc 🧮
 
 A modern, responsive calculator application featuring three distinct themes: Modern, Retro, and Cyber. Built with vanilla JavaScript, HTML, and CSS.
-> ⚠️ Some parts of this README were created using AI assistance.  t
+> ⚠️ Some parts of this README were created using AI assistance.
+
+> The Functioning of the calculator was integrated to numpad using AI(Claude AI)
 
 ## Features ✨
 
